@@ -20,8 +20,10 @@ class Hero extends sprites.ExtendableSprite {
 
 //Functions======================================================
 function createPlayer(): void{
-    let player = new Hero(assets.image``,SpriteKind.Player,defaultPlayerHitpoints)
+    let player = new Hero(assets.image`hero`,SpriteKind.Player,defaultPlayerHitpoints)
 }
 //Event-Handlers=================================================
 
 //Main===========================================================
+
+createPlayer()
