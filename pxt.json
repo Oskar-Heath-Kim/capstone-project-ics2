@@ -5,6 +5,8 @@
         "device": "*"
     },
     "files": [
+        "images.g.jres",
+        "images.g.ts",
         "main.blocks",
         "main.ts",
         "README.md",
