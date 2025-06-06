@@ -31,6 +31,10 @@ function createPlayer(): void{
     player.ay = gravity //All characters should be bound to the laws of gravity
     scene.cameraFollowSprite(player)
 }
+
+function setTilemap(): void{
+    tiles.setCurrentTilemap(assets.tilemap`level`)
+}
 //Event-Handlers=================================================
 game.onUpdate(function () { 
     if (player.isHittingTile(CollisionDirection.Bottom)) {
@@ -46,3 +50,4 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
 //Main===========================================================
 
 createPlayer()
+setTilemap()
