@@ -1,7 +1,13 @@
 //Constants======================================================
 const defaultPlayerHitpoints = 3
+const gravity = 1000 //May change later
+const playerHorizontalSpeed = 100
+const playerVerticalSpeed = 0 //They shouldn't be able to fly! This is nessicary to implement a jumping function.
+const maxJumps = 2
+const jumpVertical = 325
 //Global=========================================================
-
+let jumpReset = 0
+let currentJumps = 0
 //Classes========================================================
 
 class Hero extends sprites.ExtendableSprite {
@@ -20,9 +26,22 @@ class Hero extends sprites.ExtendableSprite {
 
 //Functions======================================================
 function createPlayer(): void{
-    let player = new Hero(assets.image`hero`,SpriteKind.Player,defaultPlayerHitpoints)
+    let player = new Hero(assets.image`hero`, SpriteKind.Player, defaultPlayerHitpoints)
+    controller.moveSprite(player)
+    player.ay = gravity //All characters should be bound to the laws of gravity
+    scene.cameraFollowSprite(player)
 }
 //Event-Handlers=================================================
+game.onUpdate(function () { 
+    if (player.isHittingTile(CollisionDirection.Bottom)) {
+        currentJumps = jumpReset
+    }
+})
+
+controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
+    currentJumps += 1
+    if (currentJumps <= maxJumps) { player.vy = -jumpVertical }
+})
 
 //Main===========================================================
 
